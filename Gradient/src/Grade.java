@@ -11,8 +11,28 @@ public final class Grade implements Comparable<Grade>{
 	{
 		if (k.equals(null))
 			throw new IllegalArgumentException("You must enter a key!");
-		key = k;
-		value = 0.0;	
+		else
+			key = k;
+			value = 0.0;	
+	}
+	
+	public Grade(String k, double v) 
+	{
+		if (k.equals(null) || v == 0.0)
+			throw new IllegalArgumentException("Grade input requires a key or grade");
+		else
+			key = k;
+			value = v;
+	}
+	
+	public Grade(String k, Double v) 
+	{
+		
+		if (k.equals(null) || v.equals(null))
+			throw new IllegalArgumentException("Grade input requires a key or grade");
+		else
+			key = k;
+			value = v;
 	}
 	
 	public int compareTo(Grade other)
@@ -38,6 +58,16 @@ public final class Grade implements Comparable<Grade>{
 			return Integer.compare((int)this.value, (int)other.value); 
 		}
 		return 0;
+	}
+	
+	//Access Methods
+	public String getKey() 
+	{
+		return key;
+	}
+	public double getValue() 
+	{
+		return value;
 	}
 	
 	public String toString() 
