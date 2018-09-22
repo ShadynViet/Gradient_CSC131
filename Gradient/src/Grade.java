@@ -11,8 +11,7 @@ public final class Grade implements Comparable<Grade>{
 	{
 		if (k.equals(null))
 			throw new IllegalArgumentException("You must enter a key!");
-		else
-			key = k;
+		else			key = k;
 			value = 0.0;	
 	}
 	

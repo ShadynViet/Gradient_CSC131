@@ -6,7 +6,7 @@
  * Updated: 09-20-2018
  * */
 //Used by to WeightedTotalStrategy Class
-public class Missing{
+public class Missing {
 	double DEFAULT_MISSING_VALUE = 0.0;
 	
 	public double doubleValue(Double number) 
