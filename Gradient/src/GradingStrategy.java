@@ -5,6 +5,7 @@
  * 
 */
 import java.util.LinkedList;
+import java.util.*
 public interface GradingStrategy {
 	public Grade calculate(String key, LinkedList<Grade> grading) throws SizeException;
 }
