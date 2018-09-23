@@ -1,4 +1,6 @@
+import java.util.Iterator;
 import java.util.List;
+import java.util.Collections;
 
 /*
  * Author: Ly Nguyen
@@ -26,6 +28,8 @@ public class DropFilter implements Filter {
 	public List<Grade> apply(List<Grade> grading) throws SizeException {
 		// TODO Auto-generated method stub
 		List<Grade> aux = grading;
+		
+		//Security checking
 		if (aux.size() == 0) {
 			throw new SizeException("DropFilter: ListGrade size is = 0.");
 		} else if(grading.equals(null)){
@@ -34,11 +38,21 @@ public class DropFilter implements Filter {
 		} else if (grading.size() == grading.size() - 2) {
 			throw new SizeException("DropFilter: ListGrade will be same size after drop.");
 			//If the list is not empty, begin applying grade
-		} else if (!grading.isEmpty()) {
-			
+		} else {
+			//Check booleans, drop if true.
+			if (shouldDropHighest == true) {
+				aux.remove(Collections.max(aux)); //SHOULD drop the Biggest value in the list.
+			} 
+			if(shouldDropLowest == true) {
+				aux.remove(Collections.min(aux)); //SHOULD Drops the smallest value in list.
+			}					
+			//check if the size is less than original again.
+			if (aux.size() < grading.size()) {
+				return aux;
+			}			
 		}
-		
-		return null;
+		System.out.println();
+		return null; //if its null. It will at least continue running the program.
 	}
 	
 	
