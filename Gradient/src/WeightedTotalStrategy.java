@@ -17,13 +17,12 @@ public class WeightedTotalStrategy implements GradingStrategy {
 	public WeightedTotalStrategy(Map<String, Double> weightGiven) {
 		weight = weightGiven;
 	}
-	//Calculate Weighted Total of Listed Grades
+	//Calculate Weighted Total of Listed Grades. Each grade will have its own key to match Weight Map
 	public Grade calculate(String givenKey, LinkedList<Grade> grading) throws SizeException {
 		@SuppressWarnings("unused")
 		double localWeight = 0.0;
 		double average = 0.0; 
 		
-		Set<String> weightSet = weight.keySet();
 		//Security Check
 		if (weight.equals(null)) {
 			throw new SizeException("Map of weights given is null");
@@ -42,9 +41,15 @@ public class WeightedTotalStrategy implements GradingStrategy {
 				//No weight = assume 1.0// assumes Null is accounted
 				else  {		
 					localWeight = 1.0; 
+					//find a way to use missing class to obtain Missing value
+					
 				}
-				//Begin Calculating Total(Grade Value * weight)
-				average += grading.get(i).getValue() * localWeight;
+				//Begin Calculating Total(Grade Value * weight) / weight
+				if (grading.get(i).getValue() == 0.0) {
+					average += Missing.doubleValue(grading.get(i).getValue()); 
+				} else {
+					average += grading.get(i).getValue() * localWeight / localWeight;
+				}
 			}
 			Grade gradedTotal = new Grade(givenKey,average);
 			return gradedTotal;

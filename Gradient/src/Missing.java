@@ -7,9 +7,9 @@
  * */
 //Used by to WeightedTotalStrategy Class
 public class Missing {
-	double DEFAULT_MISSING_VALUE = 0.0;
+	static double DEFAULT_MISSING_VALUE = 0.0;
 	
-	public double doubleValue(Double number) 
+	public static double doubleValue(Double number) 
 	{
 		if(number.equals(null)) 
 		{
@@ -21,7 +21,7 @@ public class Missing {
 			return number *2;
 		}
 	}
-	public double doubleValue(Double number, double missingValue) 
+	public static double doubleValue(Double number, double missingValue) 
 	{
 		if(number.equals(null)) 
 		{
