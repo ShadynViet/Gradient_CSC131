@@ -12,15 +12,13 @@ public class DropFilter implements Filter {
 	boolean shouldDropHighest;
 	
 	//Default drops the lowest and highest elements Default is both are true;
-	public void Dropfilter(List<Grade> grading) {
+	public DropFilter() {
 		shouldDropLowest = true;
-		shouldDropHighest = true;
-		try {
-			apply(grading);
-		} catch (SizeException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}		
+		shouldDropHighest = true;		
+	}
+	public DropFilter(boolean low,boolean hi) {
+		shouldDropLowest = low;
+		shouldDropHighest = hi;
 	}
 	
 	@Override
