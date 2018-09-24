@@ -18,7 +18,7 @@ public class WeightedTotalStrategy implements GradingStrategy {
 		weight = weightGiven;
 	}
 	//Calculate Weighted Total of Listed Grades. Each grade will have its own key to match Weight Map
-	public Grade calculate(String givenKey, LinkedList<Grade> grading) throws SizeException {
+	public Grade calculate(String givenKey, List<Grade> grading) throws SizeException {
 		@SuppressWarnings("unused")
 		double localWeight = 0.0;
 		double average = 0.0; 
