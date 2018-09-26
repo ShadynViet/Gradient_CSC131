@@ -1,4 +1,9 @@
 import java.util.LinkedList;
+/*
+ * Author: Ly Nguyen
+ * 		Class Created: September 22,2018
+ */
+
 
 public class TotalStrategy extends WeightedTotalStrategy{
 	public Grade calculate(String givenKey, LinkedList<Grade> grading) throws SizeException {

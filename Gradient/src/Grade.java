@@ -2,10 +2,15 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.*;
 
+/*
+ * Author: LY Nguyen
+ * 			Class Created Sept 18, 2018
+ */
+
 public final class Grade implements Comparable<Grade>{
 
-	public String key;
-	public double value;
+	private String key;
+	private double value;
 		
 	public Grade(String k)
 	{

@@ -1,17 +1,20 @@
 import java.util.Iterator;
 import java.util.List;
+import java.util.ArrayList;
 import java.util.Collections;
 
 /*
  * Author: Ly Nguyen
  * Update: Created class implements filter 09-23-2018
- * 			
+ * 			09/25 - Changed apply method parameters to List<Grade> Grading, 
+ * 					Return type is ArrayList
+ * 					-Changed return value from null to aux(ArrayList);
  * 
  * */
 public class DropFilter implements Filter {
 	
-	boolean shouldDropLowest;
-	boolean shouldDropHighest;
+	private boolean shouldDropLowest;
+	private boolean shouldDropHighest;
 	
 	//Default drops the lowest and highest elements Default is both are true;
 	public DropFilter() {
@@ -25,9 +28,9 @@ public class DropFilter implements Filter {
 	
 	@Override
 	//Drops Lowest Value of list and/or Highest depending on booleans
-	public List<Grade> apply(List<Grade> grading) throws SizeException {
+	public ArrayList<Grade> apply(List<Grade> grading) throws SizeException {
 		// TODO Auto-generated method stub
-		List<Grade> aux = grading;
+		ArrayList<Grade> aux = new ArrayList<Grade>(grading);
 		
 		//Security checking
 		if (aux.size() == 0) {
@@ -46,13 +49,12 @@ public class DropFilter implements Filter {
 			if(shouldDropLowest == true) {
 				aux.remove(Collections.min(aux)); //SHOULD Drops the smallest value in list.
 			}					
-			//check if the size is less than original again.
-			if (aux.size() < grading.size()) {
-				return aux;
-			}			
+//			//check if the size is less than original again.
+//			if (aux.size() < grading.size()) {
+//				return aux;
+//			}			
 		}
-		System.out.println();
-		return null; //if its null. It will at least continue running the program.
+		return aux;
 	}
 	
 	

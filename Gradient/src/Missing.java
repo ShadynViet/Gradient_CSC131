@@ -7,7 +7,7 @@
  * */
 //Used by to WeightedTotalStrategy Class
 public class Missing {
-	static double DEFAULT_MISSING_VALUE = 0.0;
+	final private static double DEFAULT_MISSING_VALUE = 0.0;
 	
 	public static double doubleValue(Double number) 
 	{
