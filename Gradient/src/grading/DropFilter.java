@@ -1,3 +1,4 @@
+package grading;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
@@ -28,7 +29,7 @@ public class DropFilter implements Filter {
 	
 	@Override
 	//Drops Lowest Value of list and/or Highest depending on booleans
-	public ArrayList<Grade> apply(List<Grade> grading) throws SizeException {
+	public List<Grade> apply(List<Grade> grading) throws SizeException {
 		// TODO Auto-generated method stub
 		ArrayList<Grade> aux = new ArrayList<Grade>(grading);
 		
