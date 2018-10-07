@@ -6,6 +6,8 @@ import java.util.*;
 /*
  * Author: LY Nguyen
  * 			Class Created Sept 18, 2018
+ * 			10/06: Revised ToStringMethod
+ * 				   Revised compareTo.
  */
 
 public final class Grade implements Comparable<Grade>{
@@ -15,52 +17,74 @@ public final class Grade implements Comparable<Grade>{
 		
 	public Grade(String k)
 	{
-		if (k.equals(null))
-			throw new IllegalArgumentException("You must enter a key!");
-		else			key = k;
-			value = 0.0;	
+//		if (k.equals(null))
+//			throw new IllegalArgumentException("You must enter a key!");
+//		else			key = k;
+//			value = 0.0;	
+		try {
+			key = k;
+			value = Missing.doubleValue(null);		//RETURNS DEFAULT_VALUE
+		} catch (IllegalArgumentException e) {
+			// TODO: handle exception
+			System.out.println("Grade Constructor: key is null.");
+		}
 	}
 	
 	public Grade(String k, double v) 
 	{
-		if (k.equals(null) || v == 0.0)
-			throw new IllegalArgumentException("Grade input requires a key or grade");
-		else
+//		if (k.equals(null))
+//			throw new IllegalArgumentException("Grade input requires a key or grade");
+//		else
+//			key = k;
+//			value = v;
+		try {
 			key = k;
 			value = v;
+		} catch (IllegalArgumentException e) {
+			// TODO: handle exception
+			System.out.println("Grade Constructor 2: Key is null");
+		}
 	}
 	
 	public Grade(String k, Double v) 
 	{
-		
-		if (k.equals(null) || v.equals(null))
-			throw new IllegalArgumentException("Grade input requires a key or grade");
-		else
+//		
+//		if (k.equals(null) /*|| v.equals(0.0)*/)
+//			throw new IllegalArgumentException("Grade input requires a key or grade");
+//		else
+//			key = k;
+//			value = v;
+		try {
 			key = k;
-			value = v;
+			value = Missing.doubleValue(null);		//Returns DEFAULT_VALUE
+		} catch (IllegalArgumentException e) {
+			// TODO: handle exception
+			System.out.println("Grade Constructor 3: Key is null");
+		}
+	
 	}
 	
 	public int compareTo(Grade other)
 	{
 		//this.value null and other not null
-		if(this.value == 0 && other.value != 0)
+		if(this.value == 0.0 && other.value != 0.0)
 		{
 			return -1;
 		}
 		//both null
-		else if(this.value == 0 && other.value == 0)
+		else if(this.value == 0.0 && other.value == 0.0)
 		{
 			return 0;
 		}
 		//this not null. other is null
-		else if(this.value != 0 && other.value == 0) 
+		else if(this.value != 0.0 && other.value == 0.0) 
 		{
 			return 1;
 		}
 		//both not null
-		else if (this.value != 0 && other.value !=0) 
+		else if (this.value != 0.0 && other.value != 0.0) 
 		{
-			return Integer.compare((int)this.value, (int)other.value); 
+			return Integer.compare((int)this.getValue(), (int)other.getValue()); 
 		}
 		return 0;
 	}
@@ -78,14 +102,11 @@ public final class Grade implements Comparable<Grade>{
 	public String toString() 
 	{
 		String s = "";
-		//if value not null print everything
-		if (this.value != 0.0) 
-		{
-			//print the key;
-			s = printKey();
-			NumberFormat formatter = new DecimalFormat("#0.0");
-			s += formatter.format(this.value);
-		}
+		
+		//print the key;
+		s = printKey();
+		NumberFormat formatter = new DecimalFormat("#0.0");
+		s += formatter.format(this.value);	
 		return s;
 	}
 	//print keys with : + a space

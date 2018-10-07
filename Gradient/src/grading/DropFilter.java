@@ -30,7 +30,6 @@ public class DropFilter implements Filter {
 	@Override
 	//Drops Lowest Value of list and/or Highest depending on booleans
 	public List<Grade> apply(List<Grade> grading) throws SizeException {
-		// TODO Auto-generated method stub
 		ArrayList<Grade> aux = new ArrayList<Grade>(grading);
 		
 		//Security checking

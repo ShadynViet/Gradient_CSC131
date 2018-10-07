@@ -12,7 +12,7 @@ public class Missing {
 	
 	public static double doubleValue(Double number) 
 	{
-		if(number.equals(null)) 
+		if(number == null) 
 		{
 			//print default
 			return DEFAULT_MISSING_VALUE;
@@ -24,7 +24,7 @@ public class Missing {
 	}
 	public static double doubleValue(Double number, double missingValue) 
 	{
-		if(number.equals(null)) 
+		if(number == (null)) 
 		{
 			return missingValue;
 		}

@@ -1,26 +1,30 @@
 package grading;
-import java.util.LinkedList;
+import java.util.List;
 /*
  * Author: Ly Nguyen
  * 		Class Created: September 22,2018
+ * 
+ *		Note: 
+ *			10/6- Revise Calculation for TotalStrategy
  */
 
 
 public class TotalStrategy extends WeightedTotalStrategy{
-	public Grade calculate(String givenKey, LinkedList<Grade> grading) throws SizeException {
+	public Grade calculate(String givenKey, List<Grade> grading) throws SizeException {
 		@SuppressWarnings("unused")
-		double localWeight = 0.0;
-		double average = 0.0; 
-		
+		double localWeight = 1.0;			//No Weight Assume 1.0
+		double total = 0.0; 
+/*		
 		//Security Check
-		if (weight.equals(null)) {
+		if (super.weight.equals(null)) {
 			throw new SizeException("Map of weights given is null");
-		} else if(weight.isEmpty()) {
+		} else if(super.weight.isEmpty()) {
 			throw new SizeException("map of wieghts is empty. Size = 0");
 		}else {
+
 			for(int i=0 ;i < grading.size(); i++) {
 				//if user's key exist in weight map, use key's weight accordingly.
-				if (weight.containsKey(grading.get(i).getKey())) {
+				if (super.weight.containsKey(grading.get(i).getKey())) {
 					localWeight = weight.get(grading.get(i).getKey());
 					if (localWeight < 0.0) 
 					{
@@ -41,8 +45,16 @@ public class TotalStrategy extends WeightedTotalStrategy{
 				}
 				
 			}
-			Grade gradedTotal = new Grade(givenKey,average);
-			return gradedTotal;
-		}		
+			*/
+	//Calculate TotalStrategy with no weights
+	for (Grade i: grading) {
+		if(i == null || i.getValue() == 0.0) {
+			total = total + Missing.doubleValue(0.0);
+		}
+		total = total + i.getValue(); 
 	}
+		Grade gradedTotal = new Grade(givenKey,total);
+		return gradedTotal;
+	}		
+	//}
 }
